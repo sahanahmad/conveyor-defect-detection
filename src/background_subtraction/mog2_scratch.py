@@ -1,19 +1,3 @@
-"""
-Day 3 — Component 2 scratch: Background Subtraction (MOG2)
-
-Purpose: run MOG2 over the Component 1 synthetic frame sequence and inspect
-how the foreground mask behaves over time. This is exploratory/diagnostic —
-not yet wired into Component 3 (that's Day 4).
-
-Update (this version): bounding-box measurement is now computed on a
-thresholded mask (255 only), not the raw MOG2 output. The raw mask also
-contains shadow pixels (value 127), which findContours treats as nonzero —
-that was producing bogus bboxes (e.g. w=400,h=200) during warm-up frames
-where white_pixels was 0. Confirmed via frame 0: white_pixels=0 but the
-unthresholded bbox call still returned a huge box, which is only possible
-if it was picking up shadow noise, not real foreground.
-"""
-
 import cv2
 from pathlib import Path
 
